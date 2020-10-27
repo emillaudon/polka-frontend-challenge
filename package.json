@@ -2,17 +2,18 @@
   "name": "substrate-front-end-template",
   "version": "0.1.1",
   "private": true,
+  "homepage": "http://emillaudon.github.io/polka-frontend-challenge",
   "author": "Parity Technologies <admin@parity.io>",
   "license": "Unlicense",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run build",
     "test": "CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
     "lint:ci": "eslint src/**/*.js --max-warnings=0",
     "lint:fix": "eslint --fix src/**/*.js",
-    "predeploy": "yarn build",
+    "predeploy": "gh-pages -d build",
     "deploy": "gh-pages -d build -m '[ci skip] Updates'"
   },
   "dependencies": {
@@ -83,7 +84,6 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://substrate-developer-hub.github.io/substrate-front-end-template",
   "bugs": {
     "url": "https://github.com/substrate-developer-hub/substrate-front-end-template/issues"
   },
