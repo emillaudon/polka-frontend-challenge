@@ -8,6 +8,7 @@ import { DeveloperConsole } from './substrate-lib/components';
 import AccountSelector from './AccountSelector';
 import Balances from './Balances';
 import BlockNumber from './BlockNumber';
+import Blockinfo from './Blockinfo';
 import Events from './Events';
 import Interactor from './Interactor';
 import Metadata from './Metadata';
@@ -16,7 +17,7 @@ import TemplateModule from './TemplateModule';
 import Transfer from './Transfer';
 import Upgrade from './Upgrade';
 
-function Main () {
+function Main() {
   const [accountAddress, setAccountAddress] = useState(null);
   const { apiState, keyring, keyringState, apiError } = useSubstrate();
   const accountPair =
@@ -61,20 +62,9 @@ function Main () {
             <BlockNumber />
             <BlockNumber finalized />
           </Grid.Row>
-          <Grid.Row stretched>
-            <Balances />
-          </Grid.Row>
-          <Grid.Row>
-            <Transfer accountPair={accountPair} />
-            <Upgrade accountPair={accountPair} />
-          </Grid.Row>
-          <Grid.Row>
-            <Interactor accountPair={accountPair} />
-            <Events />
-          </Grid.Row>
-          <Grid.Row>
-            <TemplateModule accountPair={accountPair} />
-          </Grid.Row>
+          <Blockinfo/>
+
+
         </Grid>
       </Container>
       <DeveloperConsole />
@@ -82,7 +72,7 @@ function Main () {
   );
 }
 
-export default function App () {
+export default function App() {
   return (
     <SubstrateContextProvider>
       <Main />

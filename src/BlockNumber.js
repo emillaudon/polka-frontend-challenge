@@ -8,6 +8,7 @@ function Main (props) {
   const { finalized } = props;
   const [blockNumber, setBlockNumber] = useState(0);
   const [blockNumberTimer, setBlockNumberTimer] = useState(0);
+  const [lastHeader, setLastHeader] = useState(0);
 
   const bestNumber = finalized
     ? api.derive.chain.bestNumberFinalized
@@ -23,6 +24,14 @@ function Main (props) {
       .then(unsub => {
         unsubscribeAll = unsub;
       })
+      .catch(console.error);
+
+    api.rpc.chain.subscribeNewHeads((lastHeader) => {
+      setLastHeader(JSON.parse(lastHeader).parentHash);
+      console.log(JSON.parse(lastHeader).parentHash);
+    }).then(unsub => {
+      unsubscribeAll = unsub;
+    })
       .catch(console.error);
 
     return () => unsubscribeAll && unsubscribeAll();
